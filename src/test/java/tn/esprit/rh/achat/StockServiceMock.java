@@ -24,7 +24,7 @@ import tn.esprit.rh.achat.services.IStockService;
 import tn.esprit.rh.achat.services.StockServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class StockServiceImplMock {
+ class StockServiceMock {
 
 	@InjectMocks
 	StockServiceImpl stockService;
@@ -38,26 +38,26 @@ public class StockServiceImplMock {
 	List<Stock> stock = new ArrayList<Stock>() {{add(s1); add(s2);}}; 
 	
 	@Test
-	public void testGetAllStock() {
+	 void testGetAllStock() {
 		stockService.retrieveAllStocks();
 		verify(stockRepository).findAll();
 	}
 	
 	@Test
-	public void testGetStock() {
+	 void testGetStock() {
 		Mockito.when(stockRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(s));
 		assertNotNull(stockService.retrieveStock((long)3));	
 	}
 	
 	@Test
-	public void testaddStock() {
+	 void testaddStock() {
 		Mockito.when(stockRepository.save(Mockito.any(Stock.class))).thenReturn(s);
 		assertNotNull(stockService.addStock(s));
 		//verify(stockRepository).save(s);
 	}
 	
 	@Test
-	public void testUpdateStock() {
+	 void testUpdateStock() {
 		Mockito.when(stockRepository.save(Mockito.any(Stock.class))).thenReturn(s);
 		s.setQte(55);
 		assertNotNull(stockService.updateStock(s));	
@@ -66,7 +66,7 @@ public class StockServiceImplMock {
 	
 	
 	@Test
-	public void testDeleteStock() {
+	 void testDeleteStock() {
 		stockService.deleteStock((long)3);
 		verify(stockRepository).deleteById((long)3);
 	}
