@@ -1,4 +1,4 @@
-package tn.esprit.rh.achat;
+/*package tn.esprit.rh.achat;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,7 +60,7 @@ class StockServiceImpTest {
 		stockService.deleteStock(savedStock.getIdStock());
 	}
 
-	/*
+	
 	@Test
 	public void testAddOptimizedStock() {
 		Stock s =  Stock.builder().libelleStock("test stock").qte(50).qteMin(10).build();
@@ -70,7 +70,7 @@ class StockServiceImpTest {
 		assertTrue(savedStock.getQteMin()>0);
 		stockService.deleteStock(savedStock.getIdStock());
 		}
-		*/
+		
 
 	@Test
 	public void testDeleteStock() {
@@ -80,4 +80,4 @@ class StockServiceImpTest {
 	    assertNotNull(savedStock.getIdStock());
 		}
 
-}
+}*/
