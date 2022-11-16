@@ -24,7 +24,7 @@ import tn.esprit.rh.achat.services.IStockService;
 import tn.esprit.rh.achat.services.StockServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
- class StockServiceMock {
+ public class StockMockServices {
 
 	@InjectMocks
 	StockServiceImpl stockService;
