@@ -1,6 +1,7 @@
 package tn.esprit.rh.achat.services;
 
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.rh.achat.entities.*;
@@ -50,14 +51,9 @@ public class FactureServiceImpl implements IFactureService {
 	
 
 	@Override
-	public void cancelFacture(Long factureId) {
-		// Méthode 01
-		
-		Facture facture = factureRepository.findById(factureId).orElse(new Facture());
-		facture.setArchivee(true);
-		factureRepository.save(facture);
-		//Méthode 02 (Avec JPQL)
-		factureRepository.updateFacture(factureId);
+	public Facture cancelFacture(Facture f) {
+		f.setArchivee(true);
+		return factureRepository.save(f);
 	}
 
 	@Override
@@ -70,17 +66,17 @@ public class FactureServiceImpl implements IFactureService {
 
 	@Override
 	public List<Facture> getFacturesByFournisseur(Long idFournisseur) {
-		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
+		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(new Fournisseur());
 		return (List<Facture>) fournisseur.getFactures();
 	}
 
 	@Override
 	public void assignOperateurToFacture(Long idOperateur, Long idFacture) {
-		Facture facture = factureRepository.findById(idFacture).orElse(null);
-		Operateur operateur = operateurRepository.findById(idOperateur).orElse(null);
+		Facture facture = factureRepository.findById(idFacture).orElse(new Facture());
+		Operateur operateur = operateurRepository.findById(idOperateur).orElse(new Operateur());
 		operateur.getFactures().add(facture);
 		operateurRepository.save(operateur);
-	}
+	} 
 
 	@Override
 	public float pourcentageRecouvrement(Date startDate, Date endDate) {

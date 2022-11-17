@@ -38,7 +38,7 @@ import tn.esprit.rh.achat.services.ReglementServiceImpl;
 
 
 @ExtendWith(MockitoExtension.class)
-public class ProduitServiceImplMock {
+class ProduitServiceImplMock {
     
     @Mock
     ProduitRepository produitRepository;

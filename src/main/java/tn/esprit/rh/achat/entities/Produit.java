@@ -13,13 +13,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import tn.esprit.achat.dto.DtoProduit;
+
 @Entity
-@Builder 
 @Getter
 @Setter
 @AllArgsConstructor
@@ -49,7 +49,14 @@ public class Produit implements Serializable {
 	@ManyToOne
 	@JsonIgnore
 	private CategorieProduit categorieProduit;
-	
+	public Produit(DtoProduit p) {
+		this.codeProduit=p.getCodeProduit();
+		this.libelleProduit=p.getLibelleProduit();
+		this.prix=p.getPrix();
+		this.dateCreation=p.getDateCreation();
+		this.dateDerniereModification=p.getDateDerniereModification();
+			
+	}
 
 
 	

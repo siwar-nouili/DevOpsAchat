@@ -38,7 +38,6 @@ public class OperateurServiceImpl implements IOperateurService {
 	@Override
 	public Operateur retrieveOperateur(Long id) {
 		return operateurRepository.findById(id).orElse(null);
-		
 	}
 
 }

@@ -4,6 +4,8 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+
+import tn.esprit.achat.dto.DtoFacture;
 import tn.esprit.rh.achat.entities.Facture;
 import tn.esprit.rh.achat.services.IFactureService;
 
@@ -24,8 +26,8 @@ public class FactureRestController {
     @GetMapping("/retrieve-all-factures")
     @ResponseBody
     public List<Facture> getFactures() {
-        return factureService.retrieveAllFactures();
-        
+      
+        return  factureService.retrieveAllFactures();
     }
 
     // http://localhost:8089/SpringMVC/facture/retrieve-facture/8
@@ -35,26 +37,25 @@ public class FactureRestController {
         return factureService.retrieveFacture(factureId);
     }
 
-    
     @PostMapping("/add-facture")
     @ResponseBody
-    public Facture addFacture(@RequestBody Facture f) {
-        return  factureService.addFacture(f);
-        
+    public Facture addFacture(@RequestBody DtoFacture f) {
+        Facture facture=new Facture(f);
+        return  factureService.addFacture(facture);
     }
 
     /*
      * une facture peut etre annulé si elle a été saisie par erreur Pour ce
      * faire, il suffit de mettre le champs active à false
      */
-    
+  
     @PutMapping("/cancel-facture/{facture-id}")
     @ResponseBody
-    public void cancelFacture(@PathVariable("facture-id") Long factureId) {
-        factureService.cancelFacture(factureId);
+    public void cancelFacture(@PathVariable("facture") Facture f) {
+        factureService.cancelFacture(f);
     }
 
-    
+
     @GetMapping("/getFactureByFournisseur/{fournisseur-id}")
     @ResponseBody
     public List<Facture> getFactureByFournisseur(@PathVariable("fournisseur-id") Long fournisseurId) {
@@ -67,7 +68,7 @@ public class FactureRestController {
         factureService.assignOperateurToFacture(idOperateur, idFacture);
     }
 
-    
+   
     @GetMapping(value = "/pourcentageRecouvrement/{startDate}/{endDate}")
     public float pourcentageRecouvrement(
             @PathVariable(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,

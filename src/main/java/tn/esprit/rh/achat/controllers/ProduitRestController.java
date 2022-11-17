@@ -3,6 +3,9 @@ package tn.esprit.rh.achat.controllers;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import tn.esprit.achat.dto.DtoProduit;
+
 import tn.esprit.rh.achat.entities.Produit;
 import tn.esprit.rh.achat.services.IProduitService;
 
@@ -22,8 +25,8 @@ public class ProduitRestController {
 	@GetMapping("/retrieve-all-produits")
 	@ResponseBody
 	public List<Produit> getProduits() {
-		return produitService.retrieveAllProduits();
 		
+		return produitService.retrieveAllProduits();
 	}
 
 	// http://localhost:8089/SpringMVC/produit/retrieve-produit/8
@@ -37,9 +40,9 @@ public class ProduitRestController {
 	
 	@PostMapping("/add-produit")
 	@ResponseBody
-	public Produit addProduit(@RequestBody Produit p) {
-		return produitService.addProduit(p);
-		
+	public Produit addProduit(@RequestBody DtoProduit p) {
+		Produit produit=new Produit(p);
+		return produitService.addProduit(produit);
 	}
 
 	
@@ -52,8 +55,9 @@ public class ProduitRestController {
 	
 	@PutMapping("/modify-produit")
 	@ResponseBody
-	public Produit modifyProduit(@RequestBody Produit p) {
-		return produitService.updateProduit(p);
+	public Produit modifyProduit(@RequestBody DtoProduit p) {
+		Produit produit=new Produit(p);
+		return produitService.updateProduit(produit);
 	}
 
 	/*
@@ -65,6 +69,11 @@ public class ProduitRestController {
 	public void assignProduitToStock(@PathVariable("idProduit") Long idProduit, @PathVariable("idStock") Long idStock) {
 		produitService.assignProduitToStock(idProduit, idStock);
 	}
+
+	/*
+	 * Revenu Brut d'un produit (qte * prix unitaire de toutes les lignes du
+	 * detailFacture du produit envoyé en paramètre )
+	 */
 
 
 
