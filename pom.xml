@@ -66,8 +66,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
     </plugin>
 <plugin>
 
-
-
 <groupId>org.springframework.boot</groupId>
 <artifactId>spring-boot-maven-plugin</artifactId>
 <configuration>
@@ -81,19 +79,26 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 </plugin>
 </plugins>
 </build>
-
 <distributionManagement>
 
-<repository>
-<id>deploymentRepo</id>
-
-<name>Nexus Repository</name>
-
-<url>http://192.168.51.208:8081/repository/maven-releases/</url>
-
-</repository>
-
-</distributionManagement>
+       <repository>
 
 
+
+           <id>deploymentRepo</id>
+
+
+
+           <name>Nexus Repository</name>
+
+
+
+           <url>http://:192.168.51.208:8081/repository/maven-releases/</url>
+
+
+       </repository>
+
+
+
+   </distributionManagement>
 </project>
