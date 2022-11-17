@@ -34,14 +34,12 @@ public class ReglementRestController {
         return list;
     }
 
-    // http://localhost:8089/SpringMVC/reglement/retrieve-reglement/8
     @GetMapping("/retrieve-reglement/{reglement-id}")
     @ResponseBody
     public Reglement retrieveReglement(@PathVariable("reglement-id") Long reglementId) {
         return reglementService.retrieveReglement(reglementId);
     }
 
-    // http://localhost:8089/SpringMVC/reglement/retrieveReglementByFacture/8
     @GetMapping("/retrieveReglementByFacture/{facture-id}")
     @ResponseBody
     public List<Reglement> retrieveReglementByFacture(@PathVariable("facture-id") Long factureId) {
