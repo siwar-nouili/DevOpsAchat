@@ -54,7 +54,7 @@ public class FactureRestController {
         factureService.cancelFacture(factureId);
     }
 
-    // http://localhost:8089/SpringMVC/facture/getFactureByFournisseur/{fournisseur-id}
+    
     @GetMapping("/getFactureByFournisseur/{fournisseur-id}")
     @ResponseBody
     public List<Facture> getFactureByFournisseur(@PathVariable("fournisseur-id") Long fournisseurId) {
@@ -67,7 +67,7 @@ public class FactureRestController {
         factureService.assignOperateurToFacture(idOperateur, idFacture);
     }
 
-    // http://localhost:8089/SpringMVC/facture/pourcentageRecouvrement/{startDate}/{endDate}
+    
     @GetMapping(value = "/pourcentageRecouvrement/{startDate}/{endDate}")
     public float pourcentageRecouvrement(
             @PathVariable(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
